@@ -1,0 +1,3 @@
+This is a small collection of patterns I use on a regular basis when writing node.js application. 
+
+To see the test run you need mocha install globably and then run npm test
