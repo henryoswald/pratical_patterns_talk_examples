@@ -7,10 +7,16 @@ user_ids = [
 	"444"
 ]
 
+#this could be a db call or http request
+someSlowAsyncFunction = (user_id, cb)->
+	setTimeout cb, (Math.random()*100)
+
+
 jobs = user_ids.map (user_id)->
 	return (cb)->
-		console.log "processing user : #{user_id}"
-		setTimeout cb, (Math.random()*3)
+		someSlowAsyncFunction user_id, ->
+			console.log "processing user : #{user_id}"
+			cb()
 
 async.series jobs, ->
 	console.log "finished processing all users in series"
